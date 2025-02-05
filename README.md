@@ -22,3 +22,6 @@ Selecciona uno o más boletos disponibles.
 Genera tus números de la suerte o selecciona manualmente los números deseados.
 Completa tus datos personales (nombre, correo electrónico, teléfono).
 Confirma tu compra y guarda tu selección.
+
+
+![image](https://github.com/user-attachments/assets/1a7389dd-3e2e-4f57-9c56-ce6d8a5e766f)
