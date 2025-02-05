@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sorteo de Automóvil</title>
+    <link rel="stylesheet" href="styles.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <nav>
+      <a href="#">Inicio</a>
+      <a href="#">Sorteos</a>
+      <a href="#">Contacto</a>
+    </nav>
+    <div class="banner">
+      <img src="images/bmw-mx-m4-new-01.jpg" alt="Sorteo de Automóvil" />
+      <button class="btn-banner" id="chooseTicketBtn">Comprar Boleto</button>
+    </div>
+    <section>
+      <h2>Escoge tu boleto</h2>
+      <p>Selecciona uno o más boletos para participar en el sorteo.</p>
+    </section>
+    <footer>
+      &copy; 2023 Sorteo de Automóvil. Todos los derechos reservados.
+    </footer>
+
+    <!-- Modal principal -->
+    <div class="modal" id="ticketModal">
+        <div class="modal-content">
+          <!-- Encabezado -->
+          <div class="modal-header">
+            <ul style="display: flex; justify-content: space-between; list-style: none; padding: 0;">
+              <li>
+                <p>Total seleccionado: <span id="totalSelected">0</span> <i class="fa fa-ticket" style="color: #4caf50;"></i></p>
+              </li>
+              <li>
+                <p>Costo total: $<span id="totalCost">0</span></p>
+              </li>
+            </ul>
+          </div>
+      
+          <!-- Resumen de números seleccionados -->
+          <div class="summary">
+              <p>Números seleccionados: </p>
+            <div class="summary-right">
+                <span id="selectedNumbers"></span>
+            </div>
+          </div>
+      
+          <!-- Botón Confirmar Compra -->
+          <div class="summary-center">
+            <button class="confirm-btn" id="confirmSelectionBtn" disabled>
+              Confirmar Compra
+            </button>
+          </div>
+      
+          <!-- Barra de búsqueda -->
+          <div class="sticky-search">
+            <input
+              type="text"
+              class="ticket-search"
+              id="ticketSearch"
+              placeholder="Buscar boleto por número..."
+            />
+          </div>
+      
+          <!-- Botón Generar Boletos -->
+          <button class="generate-lucky-btn" id="generateTicketsBtn">
+            Generar Boletos de la Suerte <i class="fa fa-robot"></i>
+          </button>
+      
+          <!-- Contenedor de boletos disponibles -->
+          <div class="ticket-grid-container">
+            <legend style="text-align: center; color: black;">
+              <i class="fa fa-ticket"></i> Boletos Disponibles
+            </legend>
+            <div class="ticket-grid" id="ticketsContainer"></div>
+          </div>
+        </div>
+      </div>
+
+    <!-- Modal pequeña para generar boletos -->
+    <div class="small-modal" id="generateTicketsModal">
+        <div class="small-modal-header">Generar Boletos</div>
+        
+        <!-- Campo de entrada para la cantidad de boletos -->
+        <div class="input-container">
+          <label for="ticketCountInput">Cantidad de boletos:</label>
+          <input
+            type="number"
+            id="ticketCountInput"
+            placeholder="Ej. 5"
+            min="1"
+            max="100"
+          />
+        </div>
+      
+        <!-- Botón para generar boletos -->
+        <button id="generateTicketsConfirmBtn" class="generate-btn">
+          Generar <i class="fa fa-magic"></i>
+        </button>
+      
+        <!-- Animación de carga -->
+        <div class="loading" id="smallModalLoading" style="display: none;">
+          <img
+            src="https://i.gifer.com/origin/34/34338d26023e5515f6cc8969aa027bca_w200.gif"
+            alt="Loading..."
+          />
+        </div>
+      
+        <!-- Contenedor para los boletos generados -->
+        <div class="ticket-grid" id="generatedTicketsContainer" style="display: none;"></div>
+      
+        <!-- Pie del modal -->
+        <div class="small-modal-footer">
+          <button id="saveSelectionBtn" class="footer-btn save-btn">Guardar Selección</button>
+          <button id="selectAllBtn" class="footer-btn select-all-btn">Quiero Todos</button>
+          <button id="closeModalBtn" class="footer-btn cancel-btn">Cerrar</button>
+        </div>
+      </div>
+
+<!-- Modal de formulario -->
+<div class="modal" id="formModal">
+    <div class="modal-content">
+      <h2>Completa tus datos para continuar</h2>
+      
+      <!-- Campo de nombre -->
+      <div class="form-group">
+        <label for="name">Nombre completo:</label>
+        <input
+          type="text"
+          id="name"
+          placeholder="Nombre completo"
+          required
+        />
+      </div>
+  
+      <!-- Campo de correo electrónico -->
+      <div class="form-group">
+        <label for="email">Correo electrónico:</label>
+        <input
+          type="email"
+          id="email"
+          placeholder="@"
+          required
+        />
+      </div>
+  
+      <!-- Campo de teléfono -->
+      <div class="form-group">
+        <label for="phone">Teléfono:</label>
+        <input
+          type="tel"
+          id="phone"
+          placeholder="+52"
+          required
+        />
+      </div>
+  
+      <!-- Botones de acción -->
+      <div class="form-actions">
+        <!-- Botón Enviar Datos -->
+        <button id="sendFormBtn" class="submit-btn">
+          Enviar Datos <i class="fa fa-paper-plane"></i>
+        </button>
+  
+        <!-- Botón Continuar Elegiendo Boletos -->
+        <button id="continueSelectingBtn" class="continue-btn">
+          Continuar eligiendo boletos <i class="fa fa-ticket"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+ </body>
+</html>
