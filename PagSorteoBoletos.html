@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sorteo de Automóvil</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
+  <style>
+    footer,nav{background:#333;padding:1rem;color:#fff;text-align:center}.confirm-btn,.summary{box-shadow:0 4px 6px rgba(0,0,0,.1)}.banner,.confirm-btn,.generate-lucky-btn,.ticket-btn,footer,nav,nav a{color:#fff}.banner,.modal-content,.ticket-btn{position:relative}.banner .btn-banner,.small-modal{top:50%;left:50%;transform:translate(-50%,-50%)}.ticket-grid{grid-template-columns:repeat(auto-fill,minmax(80px,1fr))}.banner,.input-container,.loading,.modal-content,.modal-header,.small-modal-header,footer,nav,section{text-align:center}*,.form-group input{box-sizing:border-box}*{margin:0;padding:0}body{font-family:Arial,sans-serif;line-height:1.6;background-color:#f4f4f9}nav a{text-decoration:none;margin:0 15px}.banner img{width:100%;height:auto}.banner .btn-banner{position:absolute;background:#ff5722;color:#fff;padding:10px 20px;border:none;border-radius:5px;cursor:pointer;font-size:18px}section{padding:20px}footer{position:fixed;bottom:0;width:100%}.modal-content{max-height:80vh;overflow-y:auto}.modal-header{margin-bottom:15px;font-family:fantasy}.modal-header ul{display:flex;justify-content:center;align-items:center;list-style:none;padding:0;gap:20px}.modal-header p{font-size:16px;color:#333;margin:0;display:flex;align-items:center}.modal-header i{margin-left:5px;color:#4caf50}.summary{display:flex;flex-direction:column;align-items:center;margin-top:20px;padding:15px;background:linear-gradient(135deg,#fff,#f0f8ff);border-radius:10px}.summary-content{display:flex;justify-content:space-between;width:100%;margin-bottom:15px}.summary-left{display:flex;flex-direction:column;align-items:flex-start}.summary-left p,.summary-right p{font-size:16px;color:#333;margin:5px 0;display:flex;align-items:center}.summary-left i{margin-right:8px;color:#2196f3}.summary-left span{font-weight:700;color:#2196f3}.summary-right{display:flex;flex-direction:column;align-items:flex-end}.summary-right i{margin-left:8px;color:#4caf50}.summary-right span{font-weight:700;color:#4caf50}.summary-center{width:100%;display:flex;justify-content:center}.confirm-btn{background:linear-gradient(135deg,#ff7e5f,#feb47b);border:none;padding:12px 25px;margin-top:10px;font-size:16px;font-weight:700;border-radius:25px;cursor:pointer;transition:transform .3s,box-shadow .3s}.confirm-btn:disabled{background:#ccc;cursor:not-allowed;box-shadow:none}.confirm-btn:hover:not(:disabled),.continue-btn:hover,.footer-btn:hover,.generate-btn:hover,.submit-btn:hover{transform:scale(1.05);box-shadow:0 6px 10px rgba(0,0,0,.2)}.generate-lucky-btn{margin-top:20px;background:#2ecc71;border:none;padding:10px;border-radius:5px;cursor:pointer;width:100%;font-size:16px}.ticket-grid-container{width:100%;max-height:400px;overflow-y:auto;margin-top:20px;border:1px solid #ccc}.ticket-search{width:100%;padding:10px;margin-top:10px;border:1px solid #ccc;border-radius:5px}.ticket-grid{display:grid}.ticket-btn{background:#2196f3;border:none;padding:10px;border-radius:5px;cursor:pointer;font-size:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:background .3s}.ticket-btn i{font-size:24px;margin-bottom:5px}.ticket-btn.selected{background:#4caf50}#selectedNumbers{display:flex;flex-wrap:wrap;gap:5px}.selected-number{display:flex;align-items:center;gap:5px;padding:5px;border-radius:5px;background-color:#e0f7fa;cursor:pointer;transition:background-color .3s}.selected-number:hover{background-color:#ffebee}.selected-number:hover i{color:red}.small-modal{display:none;position:fixed;background:#fff;padding:20px;border-radius:10px;width:95%;max-width:600px;box-shadow:0 4px 8px rgba(0,0,0,.2);z-index:1000}.footer-btn,.generate-btn{cursor:pointer;font-weight:700;transition:transform .3s,box-shadow .3s;box-shadow:0 4px 6px rgba(0,0,0,.1);padding:10px}.small-modal-header{font-size:20px;font-weight:700;color:#333;margin-bottom:15px;border-bottom:1px solid #ccc;padding-bottom:10px}.input-container{margin-bottom:15px}.input-container label{font-size:16px;color:#333;display:block;margin-bottom:5px}.input-container input{width:100%;padding:10px;border:1px solid #ccc;border-radius:5px;font-size:16px;text-align:center}.generate-btn{background:linear-gradient(135deg,#ff7e5f,#feb47b);color:#fff;border:none;border-radius:5px;font-size:16px;width:100%}.continue-btn i,.generate-btn i,.submit-btn i{margin-left:5px}.loading{margin-top:20px}.loading img{width:50px;height:50px}.ticket-grid{display:grid;gap:10px;margin-top:15px;max-height:200px;overflow-y:auto;padding:10px;border:1px solid #ccc;border-radius:5px}.small-modal-footer{display:flex;justify-content:space-between;margin-top:20px}.footer-btn{flex:1;border:none;border-radius:5px;font-size:14px}.cancel-btn{background:#e74c3c;color:#fff}.save-btn{background:#2ecc71;color:#fff}.select-all-btn{background:#3498db;color:#fff}.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.7);justify-content:center;align-items:center}.modal-content{background:#fff;padding:57px;border-radius:20px;width:90%;max-width:881px;box-shadow:0 4px 8px rgba(0,0,0,.2)}.continue-btn,.submit-btn{color:#fff;padding:12px;cursor:pointer;font-weight:700;transition:transform .3s,box-shadow .3s;box-shadow:0 4px 6px rgba(0,0,0,.1)}.modal-content h3{font-size:20px;font-weight:700;color:#333;margin-bottom:20px}.form-group{margin-bottom:15px;text-align:left}.form-group label{font-size:14px;color:#333;display:block;margin-bottom:5px}.continue-btn,.form-group input,.submit-btn{font-size:16px;width:100%}.form-group input{padding:10px;border:1px solid #ccc;border-radius:5px}.submit-btn{margin-top:10px;background:linear-gradient(135deg,#ff7e5f,#feb47b);border:none;border-radius:25px}.form-actions{display:flex;flex-direction:column;gap:10px;margin-top:15px}.continue-btn{background:#2196f3;border:none;border-radius:25px}
+  </style>
+  <body>
+    <nav>
+      <a href="#">Inicio</a>
+      <a href="#">Sorteos</a>
+      <a href="#">Contacto</a>
+    </nav>
+    <div class="banner">
+      <img src="images/bmw-mx-m4-new-01.jpg" alt="Sorteo de Automóvil" />
+      <button class="btn-banner" id="chooseTicketBtn">Comprar Boleto</button>
+    </div>
+    <section>
+      <h2>Escoge tu boleto</h2>
+      <p>Selecciona uno o más boletos para participar en el sorteo.</p>
+    </section>
+    <footer>
+      &copy; 2023 Sorteo de Automóvil. Todos los derechos reservados.
+    </footer>
+
+    <!-- Modal principal -->
+    <div class="modal" id="ticketModal">
+        <div class="modal-content">
+          <!-- Encabezado -->
+          <div class="modal-header">
+            <ul style="display: flex; justify-content: space-between; list-style: none; padding: 0;">
+              <li>
+                <p>Total seleccionado: <span id="totalSelected">0</span> <i class="fa fa-ticket" style="color: #4caf50;"></i></p>
+              </li>
+              <li>
+                <p>Costo total: $<span id="totalCost">0</span></p>
+              </li>
+            </ul>
+          </div>
+      
+          <!-- Resumen de números seleccionados -->
+          <div class="summary">
+              <p>Números seleccionados: </p>
+            <div class="summary-right">
+                <span id="selectedNumbers"></span>
+            </div>
+          </div>
+      
+          <!-- Botón Confirmar Compra -->
+          <div class="summary-center">
+            <button class="confirm-btn" id="confirmSelectionBtn" disabled>
+              Confirmar Compra
+            </button>
+          </div>
+      
+          <!-- Barra de búsqueda -->
+          <div class="sticky-search">
+            <input
+              type="text"
+              class="ticket-search"
+              id="ticketSearch"
+              placeholder="Buscar boleto por número..."
+            />
+          </div>
+      
+          <!-- Botón Generar Boletos -->
+          <button class="generate-lucky-btn" id="generateTicketsBtn">
+            Generar Boletos de la Suerte <i class="fa fa-robot"></i>
+          </button>
+      
+          <!-- Contenedor de boletos disponibles -->
+          <div class="ticket-grid-container">
+            <legend style="text-align: center; color: black;">
+              <i class="fa fa-ticket"></i> Boletos Disponibles
+            </legend>
+            <div class="ticket-grid" id="ticketsContainer"></div>
+          </div>
+        </div>
+      </div>
+
+    <!-- Modal pequeña para generar boletos -->
+    <div class="small-modal" id="generateTicketsModal">
+        <div class="small-modal-header">Generar Boletos</div>
+        
+        <!-- Campo de entrada para la cantidad de boletos -->
+        <div class="input-container">
+          <label for="ticketCountInput">Cantidad de boletos:</label>
+          <input
+            type="number"
+            id="ticketCountInput"
+            placeholder="Ej. 5"
+            min="1"
+            max="100"
+          />
+        </div>
+      
+        <!-- Botón para generar boletos -->
+        <button id="generateTicketsConfirmBtn" class="generate-btn">
+          Generar <i class="fa fa-magic"></i>
+        </button>
+      
+        <!-- Animación de carga -->
+        <div class="loading" id="smallModalLoading" style="display: none;">
+          <img
+            src="https://i.gifer.com/origin/34/34338d26023e5515f6cc8969aa027bca_w200.gif"
+            alt="Loading..."
+          />
+        </div>
+      
+        <!-- Contenedor para los boletos generados -->
+        <div class="ticket-grid" id="generatedTicketsContainer" style="display: none;"></div>
+      
+        <!-- Pie del modal -->
+        <div class="small-modal-footer">
+          <button id="saveSelectionBtn" class="footer-btn save-btn">Guardar Selección</button>
+          <button id="selectAllBtn" class="footer-btn select-all-btn">Quiero Todos</button>
+          <button id="closeModalBtn" class="footer-btn cancel-btn">Cerrar</button>
+        </div>
+      </div>
+
+<!-- Modal de formulario -->
+<div class="modal" id="formModal">
+    <div class="modal-content">
+      <h2>Completa tus datos para continuar</h2>
+      
+      <!-- Campo de nombre -->
+      <div class="form-group">
+        <label for="name">Nombre completo:</label>
+        <input
+          type="text"
+          id="name"
+          placeholder="Nombre completo"
+          required
+        />
+      </div>
+  
+      <!-- Campo de correo electrónico -->
+      <div class="form-group">
+        <label for="email">Correo electrónico:</label>
+        <input
+          type="email"
+          id="email"
+          placeholder="@"
+          required
+        />
+      </div>
+  
+      <!-- Campo de teléfono -->
+      <div class="form-group">
+        <label for="phone">Teléfono:</label>
+        <input
+          type="tel"
+          id="phone"
+          placeholder="+52"
+          required
+        />
+      </div>
+  
+      <!-- Botones de acción -->
+      <div class="form-actions">
+        <!-- Botón Enviar Datos -->
+        <button id="sendFormBtn" class="submit-btn">
+          Enviar Datos <i class="fa fa-paper-plane"></i>
+        </button>
+  
+        <!-- Botón Continuar Elegiendo Boletos -->
+        <button id="continueSelectingBtn" class="continue-btn">
+          Continuar eligiendo boletos <i class="fa fa-ticket"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+<script>
+    const chooseTicketBtn = document.getElementById('chooseTicketBtn');
+const ticketModal = document.getElementById('ticketModal');
+const formModal = document.getElementById('formModal');
+const ticketsContainer = document.getElementById('ticketsContainer');
+const confirmSelectionBtn = document.getElementById('confirmSelectionBtn');
+const sendFormBtn = document.getElementById('sendFormBtn');
+const generateTicketsBtn = document.getElementById('generateTicketsBtn');
+const generateTicketsModal = document.getElementById('generateTicketsModal');
+const ticketCountInput = document.getElementById('ticketCountInput');
+const generateTicketsConfirmBtn = document.getElementById('generateTicketsConfirmBtn');
+const smallModalLoading = document.getElementById('smallModalLoading');
+const generatedTicketsContainer = document.getElementById('generatedTicketsContainer');
+const saveSelectionBtn = document.getElementById('saveSelectionBtn');
+const selectAllBtn = document.getElementById('selectAllBtn');
+const closeModalBtn = document.getElementById('closeModalBtn');
+const totalSelected = document.getElementById('totalSelected');
+const totalCost = document.getElementById('totalCost');
+const ticketSearch = document.getElementById('ticketSearch');
+
+let selectedTickets = [];
+let allTickets = [];
+let generatedTickets = [];
+
+// Generar botones de boletos con ícono de ticket
+function generateTickets() {
+  for (let i = 1; i <= 10000; i++) { // Cambiado a 10,000 boletos
+    const ticketBtn = document.createElement('button');
+    ticketBtn.classList.add('ticket-btn');
+    ticketBtn.innerHTML = `<i class="fa fa-ticket"></i><span>${i}</span>`;
+    ticketBtn.setAttribute('data-ticket', i); // Guardar el número del boleto como atributo
+    ticketBtn.addEventListener('click', () => toggleTicketSelection(ticketBtn, i));
+    ticketsContainer.appendChild(ticketBtn);
+    allTickets.push(ticketBtn);
+  }
+}
+
+// Alternar selección de boletos
+function toggleTicketSelection(button, ticketNumber) {
+  if (button.classList.contains('selected')) {
+    button.classList.remove('selected');
+    selectedTickets = selectedTickets.filter(ticket => ticket !== ticketNumber);
+  } else {
+    button.classList.add('selected');
+    selectedTickets.push(ticketNumber);
+  }
+  updateSelectionSummary();
+}
+
+// Actualizar resumen de selección
+function updateSelectionSummary() {
+  totalSelected.textContent = selectedTickets.length;
+  totalCost.textContent = selectedTickets.length * 15;
+  confirmSelectionBtn.disabled = selectedTickets.length === 0;
+}
+
+// Mostrar modal de selección de boletos
+chooseTicketBtn.addEventListener('click', () => {
+  ticketModal.style.display = 'flex';
+});
+
+// Cerrar modal al hacer clic fuera
+ticketModal.addEventListener('click', (e) => {
+  if (e.target === ticketModal) {
+    ticketModal.style.display = 'none';
+  }
+});
+
+formModal.addEventListener('click', (e) => {
+  if (e.target === formModal) {
+    formModal.style.display = 'none';
+  }
+});
+// Función para actualizar los números seleccionados con íconos
+function updateSelectedNumbers() {
+    const selectedNumbersContainer = document.getElementById('selectedNumbers');
+    selectedNumbersContainer.innerHTML = ''; // Limpiar el contenedor
+  
+    if (selectedTickets.length > 0) {
+      selectedTickets.forEach(number => {
+        // Crear un contenedor para cada número seleccionado
+        const numberElement = document.createElement('span');
+        numberElement.classList.add('selected-number');
+        numberElement.setAttribute('title', 'Eliminar de mi lista'); // Añadir título
+  
+        // Agregar ícono y número
+        numberElement.innerHTML = `<i class="fa fa-ticket"></i> ${number}`;
+  
+        // Agregar evento de clic para eliminar el boleto
+        numberElement.addEventListener('click', () => {
+          // Eliminar el boleto de la lista de selección
+          selectedTickets = selectedTickets.filter(ticket => ticket !== number);
+  
+          // Actualizar la interfaz
+          updateSelectionSummary();
+          updateSelectedNumbers();
+  
+          // Desmarcar el boleto en el grid principal
+          const originalTicket = allTickets.find(ticket => parseInt(ticket.getAttribute('data-ticket')) === number);
+          if (originalTicket) {
+            originalTicket.classList.remove('selected');
+          }
+        });
+  
+        // Agregar el número al contenedor
+        selectedNumbersContainer.appendChild(numberElement);
+      });
+    } else {
+      selectedNumbersContainer.innerHTML = 'Ningún boleto seleccionado';
+    }
+  }
+  
+  // Actualizar resumen de selección
+  function updateSelectionSummary() {
+    totalSelected.textContent = selectedTickets.length;
+    totalCost.textContent = selectedTickets.length * 15;
+    confirmSelectionBtn.disabled = selectedTickets.length === 0;
+  
+    // Actualizar los números seleccionados con íconos
+    updateSelectedNumbers();
+  }
+  
+// Confirmar selección de boletos y mostrar formulario
+confirmSelectionBtn.addEventListener('click', () => handleConfirmSelection());
+
+function handleConfirmSelection() {
+  if (selectedTickets.length > 0) {
+    ticketModal.style.display = 'none';
+    formModal.style.display = 'flex';
+  }
+}
+
+// Enviar datos por WhatsApp y eliminar boletos seleccionados
+sendFormBtn.addEventListener('click', () => {
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const phone = document.getElementById('phone').value;
+
+  if (!name || !email || !phone) {
+    alert('Por favor, completa todos los campos.');
+    return;
+  }
+
+  const message = `Nombre: ${name}%0AEmail: ${email}%0ATeléfono: ${phone}%0ABoletos seleccionados: ${selectedTickets.join(', ')}`;
+  const whatsappUrl = `https://wa.me/+527471366686?text=${message}`;
+  window.open(whatsappUrl, '_blank');
+
+  // Limpiar selecciones
+  selectedTickets = [];
+  allTickets.forEach(ticket => ticket.classList.remove('selected'));
+  updateSelectionSummary();
+  formModal.style.display = 'none';
+});
+
+// Mostrar modal pequeña para generar boletos
+generateTicketsBtn.addEventListener('click', () => {
+  generateTicketsModal.style.display = 'block';
+});
+
+// Generar boletos al hacer clic en "Generar"
+generateTicketsConfirmBtn.addEventListener('click', () => {
+  const count = parseInt(ticketCountInput.value);
+  if (!count || count < 1 || count > 100) { // Límite actualizado a 100
+    alert(`Por favor, ingresa una cantidad válida entre 1 y 100.`);
+    return;
+  }
+
+  // Mostrar loading
+  smallModalLoading.style.display = 'block';
+  generatedTicketsContainer.innerHTML = '';
+  generatedTicketsContainer.style.display = 'none';
+
+  setTimeout(() => {
+    smallModalLoading.style.display = 'none';
+    generatedTicketsContainer.style.display = 'grid';
+
+    // Generar números aleatorios únicos
+    generatedTickets = [];
+    while (generatedTickets.length < count) {
+      const randomTicket = Math.floor(Math.random() * 10000) + 1; // Cambiado a 10,000
+      if (!generatedTickets.includes(randomTicket)) {
+        generatedTickets.push(randomTicket);
+      }
+    }
+
+    // Mostrar los boletos generados
+    generatedTickets.forEach(number => {
+      const ticketBtn = document.createElement('button');
+      ticketBtn.classList.add('ticket-btn');
+      ticketBtn.innerHTML = `<i class="fa fa-ticket"></i><span>${number}</span>`;
+      ticketBtn.setAttribute('data-ticket', number);
+      ticketBtn.addEventListener('click', () => toggleTicketSelection(ticketBtn, number));
+      generatedTicketsContainer.appendChild(ticketBtn);
+    });
+  }, 1000);
+});
+
+// Guardar selección
+saveSelectionBtn.addEventListener('click', () => {
+  generatedTicketsContainer.querySelectorAll('.ticket-btn.selected').forEach(ticketBtn => {
+    const ticketNumber = parseInt(ticketBtn.getAttribute('data-ticket'));
+    if (!selectedTickets.includes(ticketNumber)) {
+      selectedTickets.push(ticketNumber);
+      const originalTicket = allTickets.find(ticket => parseInt(ticket.getAttribute('data-ticket')) === ticketNumber);
+      if (originalTicket) {
+        originalTicket.classList.add('selected');
+      }
+    }
+  });
+  updateSelectionSummary();
+  generateTicketsModal.style.display = 'none';
+});
+
+// Seleccionar todos los boletos generados
+selectAllBtn.addEventListener('click', () => {
+  generatedTicketsContainer.querySelectorAll('.ticket-btn').forEach(ticketBtn => {
+    const ticketNumber = parseInt(ticketBtn.getAttribute('data-ticket'));
+    if (!selectedTickets.includes(ticketNumber)) {
+      selectedTickets.push(ticketNumber);
+      ticketBtn.classList.add('selected');
+      const originalTicket = allTickets.find(ticket => parseInt(ticket.getAttribute('data-ticket')) === ticketNumber);
+      if (originalTicket) {
+        originalTicket.classList.add('selected');
+      }
+    }
+  });
+  updateSelectionSummary();
+  generateTicketsModal.style.display = 'none';
+});
+
+// Cerrar modal
+closeModalBtn.addEventListener('click', () => {
+  generateTicketsModal.style.display = 'none';
+});
+
+// Filtrar boletos por búsqueda
+ticketSearch.addEventListener('input', () => {
+  const query = ticketSearch.value.trim().toLowerCase();
+  allTickets.forEach(ticket => {
+    const ticketNumber = ticket.getAttribute('data-ticket');
+    if (ticketNumber.includes(query)) {
+      ticket.style.display = ''; // Mostrar boleto si coincide
+    } else {
+      ticket.style.display = 'none'; // Ocultar boleto si no coincide
+    }
+  });
+});
+
+
+// Botón para continuar eligiendo boletos
+document.getElementById('continueSelectingBtn').addEventListener('click', () => {
+    // Ocultar el modal de formulario
+    document.getElementById('formModal').style.display = 'none';
+  
+    // Mostrar el modal principal de selección de boletos
+    document.getElementById('ticketModal').style.display = 'flex';
+  });
+// Inicializar
+generateTickets();
+</script>  </body>
+</html>
