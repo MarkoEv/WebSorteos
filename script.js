@@ -45,7 +45,6 @@ function toggleTicketSelection(button, ticketNumber) {
   }
   updateSelectionSummary();
 }
-
 // Actualizar resumen de selección
 function updateSelectionSummary() {
   totalSelected.textContent = selectedTickets.length;
