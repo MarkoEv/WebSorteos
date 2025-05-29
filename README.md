@@ -6,7 +6,7 @@
 
 
 🌐 Demo en vivo
-Puedes probar la aplicación en línea aquí: https://www.sorteos.site
+Puedes probar la aplicación en línea aquí: https://simuladorsorteosauto.netlify.app/
 
 🌟 Características principales
 Compra de boletos : Selecciona uno o más boletos para participar en el sorteo.
